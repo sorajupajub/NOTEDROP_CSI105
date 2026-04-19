@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Note Drop SPU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #fce4ec !important;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+        }
+
+        .center {
+            width: 450px;
+            min-height: 600px;
+            background-color: white;
+            margin: 50px auto;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .center h2 {
+            color: #555;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-preview-container {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #F69ABD;
+            border-radius: 50%;
+            margin: 20px 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-preview-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .edit-pic-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .profile-preview-container:hover .edit-pic-overlay {
+            opacity: 1;
+        }
+
+        .form-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #F69ABD;
+            box-shadow: 0 0 0 2px rgba(246, 154, 189, 0.2);
+        }
+
+        .btn-submit {
+            background-color: #F69ABD;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #e54b8a;
+        }
+
+        .btn-back {
+            background-color: transparent;
+            color: #888;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: #fafafa;
+        }
+
+        @media (max-width: 500px) {
+            .center {
+                width: 90%;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-spu">SPU</span>
+                <span class="logo-text">Note Drop</span>
+            </div>
+            <div class="search-bar" style="visibility: hidden;">
+                <!-- Hide search on edit page -->
+            </div>
+            <nav class="nav-icons">
+                <a href="index.html" aria-label="Home"><i class="ph-fill ph-house"></i></a>
+                <a href="#" aria-label="Bookmarks"><i class="ph-fill ph-bookmark-simple"></i></a>
+                <a href="#" aria-label="Add Note"><i class="ph-fill ph-plus-square"></i></a>
+                <a href="other-profile.html" aria-label="Other Profile" title="ส่องโปรไฟล์คนอื่น"><i
+                        class="ph-fill ph-users"></i></a>
+                <a href="index.html" aria-label="Profile" class="profile-pic-nav">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+                        alt="My Profile" id="navProfileImage">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="center">
+        <h2>แก้ไขโปรไฟล์ <i class="ph ph-user-circle-plus" style="color: #F69ABD;"></i></h2>
+        <p style="font-size: 14px; color: #888; margin-top: 0;">เปลี่ยนรูปโปรไฟล์</p>
+
+        <div class="profile-preview-container" id="profilePicContainer" title="คลิกเพื่อเปลี่ยนรูป">
+            <img id="imgPreview"
+                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+                alt="Preview">
+            <div class="edit-pic-overlay">
+                <i class="ph ph-camera"></i>
+            </div>
+            <input type="file" id="picFile" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="form-container">
+            <div class="input-group">
+                <label>ชื่อผู้ใช้งาน</label>
+                <input type="text" id="username" placeholder="ระบุชื่อผู้ใช้งาน">
+            </div>
+
+            <div class="input-group">
+                <label>คำแนะนำตัว (Bio)</label>
+                <textarea id="bio" rows="3" placeholder="ระบุคำแนะนำตัว"></textarea>
+            </div>
+
+            <button class="btn-submit" id="saveProfileBtn">บันทึกการเปลี่ยนแปลง</button>
+            <button class="btn-back" id="backBtn">ย้อนกลับ</button>
+        </div>
+    </div>
+
+    <script src="edit-profile.js"></script>
+</body>
+
+</html>

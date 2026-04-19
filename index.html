@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Note Drop SPU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-spu">SPU</span>
+                <span class="logo-text">Note Drop</span>
+            </div>
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass search-icon"></i>
+                <!-- Added ID searchInput -->
+                <input type="text" id="searchInput" placeholder="ระบุรหัสวิชา, คีย์เวิร์ด เพื่อค้นหา...">
+            </div>
+            <nav class="nav-icons">
+                <a href="#" aria-label="Home"><i class="ph-fill ph-house"></i></a>
+                <a href="#" aria-label="Bookmarks"><i class="ph-fill ph-bookmark-simple"></i></a>
+                <a href="#" aria-label="Add Note"><i class="ph-fill ph-plus-square"></i></a>
+                <a href="other-profile.html" aria-label="Other Profile" title="ส่องโปรไฟล์คนอื่น"><i
+                        class="ph-fill ph-users"></i></a>
+                <a href="index.html" aria-label="Profile" class="profile-pic-nav">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+                        alt="My Profile" id="navProfileImage">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Note Viewer Modal -->
+    <div id="noteViewerModal" class="modal-overlay">
+        <div class="modal-content note-viewer-content">
+            <div class="modal-header">
+                <h2 id="viewerNoteTitle"
+                    style="font-size: 1.2rem; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+                    Note Title</h2>
+                <i class="ph ph-x close-modal" id="closeViewerBtn"></i>
+            </div>
+            <div class="modal-body" style="padding: 0;">
+                <img id="viewerNoteImage" src="" alt="Note Content"
+                    style="width: 100%; height: auto; max-height: 60vh; object-fit: contain; background: #faf0f2;">
+                <div style="padding: 24px;">
+                    <span id="viewerNoteTag" class="tag">#TAG</span>
+                    <div style="margin-top: 16px; display: flex; gap: 16px;">
+                        <button class="viewer-action-btn" id="viewerLikeBtn"><i class="ph ph-heart"></i>
+                            <span>โหวตถูกใจ</span></button>
+                        <button class="viewer-action-btn" id="viewerSaveBtn"><i class="ph ph-download-simple"></i>
+                            <span>เซฟเข้าสมุด</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Profile Header -->
+        <section class="profile-header">
+            <div class="profile-content">
+                <div class="profile-picture-container">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"
+                        alt="Profile Picture" class="profile-picture" id="profileImage">
+                </div>
+
+                <div class="profile-info">
+                    <h1 id="profileName" class="profile-name">bEauty_เจ้าของสวนอ้อย</h1>
+                    <p id="notesCountLabel" class="profile-stats">Notes: --</p>
+                    <p class="profile-bio" id="profileBioContainer">
+                        <!-- Bio will be managed by JS for Read More logic -->
+                    </p>
+                </div>
+
+                <div class="profile-actions">
+                    <a href="edit-profile.html" id="btnEditProfile" class="btn-edit-profile" style="display:inline-block; box-sizing:border-box;">Edit profile</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider Line -->
+        <hr class="section-divider">
+
+        <!-- Linked List Section: Recently Viewed -->
+        <section id="recentlyViewedSection" class="notes-section" style="display: none; margin-bottom: 40px;">
+            <div class="section-title-wrapper">
+                <h3>ประวัติการเข้าชม (Recently Viewed)</h3>
+                <span class="badge">Linked List</span>
+            </div>
+            <div id="historyNotesGrid" class="notes-grid history-grid">
+                <!-- Dynamically populated -->
+            </div>
+            <hr class="section-divider">
+        </section>
+
+        <!-- Binary Search Tree Section: Shared Notes -->
+        <section class="notes-section">
+            <div class="section-title-wrapper">
+                <h3>โน้ตที่แชร์ (Shared Notes)</h3>
+            </div>
+            <div id="mainNotesGrid" class="notes-grid">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
