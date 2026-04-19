@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invisible Lungs - Note Drop SPU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-spu">SPU</span>
+                <span class="logo-text">Note Drop</span>
+            </div>
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass search-icon"></i>
+                <input type="text" placeholder="ระบุรหัสวิชา เช่น CSI104, ค้นหาผู้ใช้...">
+            </div>
+            <nav class="nav-icons">
+                <a href="#" aria-label="Home"><i class="ph-fill ph-house"></i></a>
+                <a href="#" aria-label="Bookmarks"><i class="ph-fill ph-bookmark-simple"></i></a>
+                <a href="#" aria-label="Add Note"><i class="ph-fill ph-plus-square"></i></a>
+                <a href="other-profile.html" aria-label="Other Profile" style="color: var(--color-cyclamen)"><i class="ph-fill ph-users"></i></a>
+                <a href="index.html" aria-label="Profile" class="profile-pic-nav">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="My Profile">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Profile Header for Another User -->
+        <section class="profile-header">
+            <div class="profile-content">
+                <div class="profile-picture-container">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Profile Picture" class="profile-picture" style="border-color: var(--color-amaranth-pink);">
+                </div>
+                
+                <div class="profile-info">
+                    <h1 class="profile-name">Invisible Lungs</h1>
+                    <p class="profile-stats">Notes: 2</p>
+                    <p class="profile-bio" id="otherBioText">
+                        Dek Csi • "Don't be afraid of failure. Every mistake is a step toward success." Let's build something beautiful together! Reading books gives me inspiration and strength. I hope my shared notes can help everyone survive the finals!
+                    </p>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn-follow" onclick="this.innerHTML = '<i class=\'ph-fill ph-user-check\'></i> Following!'; this.style.backgroundColor='#9F9F9F';">
+                        <i class="ph-fill ph-user-plus"></i> Follow
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider Line -->
+        <hr class="section-divider">
+
+        <!-- Notes Grid Section -->
+        <section class="notes-section">
+            <div class="section-title-wrapper">
+                <h3>โน้ตของ Invisible Lungs</h3>
+            </div>
+            <div class="notes-grid">
+                
+                <article class="note-card">
+                    <div class="note-card-inner">
+                        <div class="note-summary">
+                            <span class="tag">#CSI104</span>
+                            <h2 class="note-title">ไม่ใช่เจ้าของกิจการอย่าหวังจะได้ใจไป...</h2>
+                            <div class="note-actions">
+                                <button class="action-btn" onclick="toggleAction(this, 'heart')"><i class="ph ph-heart"></i> <span class="btn-text">โหวต</span></button>
+                                <button class="action-btn" onclick="toggleAction(this, 'save')"><i class="ph ph-download-simple"></i> <span class="btn-text">เซฟ</span></button>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" alt="Note thumbnail" class="note-image" onclick="alert('กรุณากลับไปหน้า Profile ของตัวเองเพื่อดูระบบ Note Viewer ฉบับจัดเต็ม!')">
+                    </div>
+                </article>
+
+                <article class="note-card">
+                    <div class="note-card-inner">
+                        <div class="note-summary">
+                            <span class="tag">#CSI104</span>
+                            <h2 class="note-title">ไม่มีแอดแล้วจ้า 💔</h2>
+                            <div class="note-actions">
+                                <button class="action-btn" onclick="toggleAction(this, 'heart')"><i class="ph ph-heart"></i> <span class="btn-text">โหวต</span></button>
+                                <button class="action-btn" onclick="toggleAction(this, 'save')"><i class="ph ph-download-simple"></i> <span class="btn-text">เซฟ</span></button>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=600&q=80" alt="Note thumbnail" class="note-image" onclick="alert('กรุณากลับไปหน้า Profile ของตัวเองเพื่อดูระบบ Note Viewer ฉบับจัดเต็ม!')">
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Simple Interaction logic just for this static page
+        function toggleAction(btn, type) {
+            const icon = btn.querySelector('i');
+            const textSpan = btn.querySelector('.btn-text');
+            if (btn.classList.contains('active')) {
+                btn.classList.remove('active');
+                icon.className = type === 'heart' ? 'ph ph-heart' : 'ph ph-download-simple';
+                icon.style.color = 'var(--color-cadet-gray)';
+                btn.style.color = 'var(--color-cadet-gray)';
+                textSpan.innerText = type === 'heart' ? 'โหวต' : 'เซฟ';
+            } else {
+                btn.classList.add('active');
+                icon.className = type === 'heart' ? 'ph-fill ph-heart' : 'ph-fill ph-download-simple';
+                icon.style.color = 'var(--color-cyclamen)';
+                btn.style.color = 'var(--color-cyclamen)';
+                textSpan.innerText = type === 'heart' ? 'โหวตแล้ว' : 'เซฟแล้ว';
+            }
+        }
+    </script>
+</body>
+</html>
